@@ -30,7 +30,7 @@ export default function HomePage() {
         <div className="container flex h-16 items-center justify-between py-4">
           <div className="flex items-center gap-2">
             <Scale className="h-6 w-6 text-law-secondary" />
-            <span className="text-xl font-bold text-law-primary">LawGPT</span>
+            <span className="text-xl font-bold text-law-primary">KanoonJhalak(LawGlance)</span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
             <Link
@@ -138,7 +138,7 @@ export default function HomePage() {
                       <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                       <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
-                    <div className="flex-1 text-center text-white text-sm font-medium">LawGPT Assistant</div>
+                    <div className="flex-1 text-center text-white text-sm font-medium">KanoonJhalak(LawGlance) Assistant</div>
                   </div>
                   <div className="p-4 space-y-4">
                     <div className="flex justify-end">
@@ -399,7 +399,7 @@ export default function HomePage() {
       <footer className={`border-t flex justify-center py-8 ${isDark ? 'bg-gray-950 border-gray-800' : 'bg-gray-50'}`}>
 
         <div className="text-sm text-muted-foreground text-center">
-          © {new Date().getFullYear()} LawGPT. All rights reserved.
+          © {new Date().getFullYear()} KanoonJhalak(LawGlance). All rights reserved.
           <br />
           Build with <span className="text-law-primary">♥</span> by{' '}
           <a href="https://ayuugoyal.tech" className="text-law-primary hover:underline">ayuugoyal</a>

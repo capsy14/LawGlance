@@ -51,6 +51,3 @@ pnpm run dev
 
    - Uses retrieved context for response generation.
    - Integrates Google Gemini API for enhanced answers.
-
-## Live Demo
-Try LawGPT live at: https://lawgpt.ayuugoyal.tech/
