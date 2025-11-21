@@ -51,3 +51,25 @@ pnpm run dev
 
    - Uses retrieved context for response generation.
    - Integrates Google Gemini API for enhanced answers.
+
+---
+
+## Instructions to run the chromadb locally and feed data into it
+
+```sh
+
+python3 -m venv ./venv
+
+source venv/bin/activate
+
+pip3 install -r requirements.txt
+
+# To run the database
+chroma run --path legal_db
+
+# there has to be 3 directories ->
+# legal_db
+# extracted_texts
+# dataset
+
+```

@@ -402,7 +402,7 @@ export default function HomePage() {
           © {new Date().getFullYear()} KanoonJhalak(LawGlance). All rights reserved.
           <br />
           Build with <span className="text-law-primary">♥</span> by{' '}
-          <a href="https://ayuugoyal.tech" className="text-law-primary hover:underline">ayuugoyal</a>
+          <a href="" className="text-law-primary hover:underline">ayuugoyal</a>
         </div>
 
       </footer>

@@ -1,15 +1,45 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatInput } from "@/components/chat/chat-input";
 import { WelcomeMessage } from "@/components/chat/welcome-message";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Loader2 } from "lucide-react";
+
+type SourceMetadata = {
+    source?: string;
+    chunk_index?: number;
+};
+
+type CaseDetail = {
+    source: string;
+    chunkIndex?: number;
+    summary: string;
+    content: string;
+    metadata?: Record<string, unknown>;
+};
+
+type PromptResponse = {
+    answer: string;
+    sources?: SourceMetadata[];
+    cases?: CaseDetail[];
+};
 
 export default function NewChatPage() {
-    const router = useRouter();
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [response, setResponse] = useState<PromptResponse | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [lastPrompt, setLastPrompt] = useState<string | null>(null);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInput(e.target.value);
@@ -20,44 +50,42 @@ export default function NewChatPage() {
         if (!input.trim() || isLoading) return;
 
         setIsLoading(true);
+        setError(null);
 
         try {
-            const title = input.slice(0, 30) + (input.length > 30 ? "..." : "");
-
-            const chatResponse = await fetch("/api/chats", {
+            const chatResponse = await fetch("/api/prompt", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title: title }),
+                body: JSON.stringify({ prompt: input }),
             });
 
             if (!chatResponse.ok) {
-                throw new Error("Failed to create chat");
+                const errorBody = await chatResponse.json().catch(() => null);
+                throw new Error(errorBody?.error || "Failed to fetch response");
             }
 
-            const newChat = await chatResponse.json();
-
-            console.log("New Chat Saved", newChat);
-
-            const saveMsg = await fetch(`/api/chats/${newChat.id}/messages`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ role: "user", content: input }),
-            });
-
-            const mam = await saveMsg.json();
-
-            console.log("saveMsg", mam);
-
-            router.push(`/chat/${newChat.id}`);
-        } catch (error) {
-            console.error("Failed to create chat:", error);
+            const data: PromptResponse = await chatResponse.json();
+            setResponse(data);
+            setLastPrompt(input);
+            setInput("");
+        } catch (err) {
+            console.error("Failed to fetch response:", err);
+            setResponse(null);
+            setError(
+                err instanceof Error
+                    ? err.message
+                    : "Something went wrong while contacting the assistant."
+            );
+        } finally {
             setIsLoading(false);
         }
     };
+
+    const formattedAnswer = response?.answer
+        ?.split("\n")
+        .filter((line) => line.trim().length > 0);
 
     return (
         <div className="md:ml-64 flex flex-col flex-1 h-full">
@@ -67,10 +95,119 @@ export default function NewChatPage() {
                 scrollbar-thin scrollbar-thumb-rounded-md
                 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800
                 scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-                <div>
+                <div className="space-y-6">
                     <WelcomeMessage
                         handleInputChange={handleInputChange}
                     />
+
+                    {isLoading && (
+                        <Card className="max-w-3xl mx-auto border-dashed">
+                            <CardContent className="flex items-center gap-3 py-6">
+                                <Loader2 className="h-5 w-5 animate-spin text-law-primary" />
+                                <span className="text-sm text-muted-foreground">
+                                    Analyzing documents and drafting an answer...
+                                </span>
+                            </CardContent>
+                        </Card>
+                    )}
+
+                    {error && (
+                        <Alert variant="destructive" className="max-w-3xl mx-auto">
+                            <AlertTitle>Unable to fetch answer</AlertTitle>
+                            <AlertDescription>{error}</AlertDescription>
+                        </Alert>
+                    )}
+
+                    {response && (
+                        <div className="space-y-4 max-w-3xl mx-auto">
+                            {lastPrompt && (
+                                <div className="flex justify-end">
+                                    <Card className="w-full max-w-2xl bg-law-primary/10 border-law-primary/20">
+                                        <CardHeader className="pb-2">
+                                            <CardTitle className="text-xs font-semibold uppercase tracking-wide text-law-primary text-right">
+                                                You asked
+                                            </CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <p className="text-right text-sm text-foreground whitespace-pre-line">
+                                                {lastPrompt}
+                                            </p>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            )}
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Answer</CardTitle>
+                                </CardHeader>
+                                <CardContent className="space-y-3">
+                                    {formattedAnswer?.map((paragraph, index) => (
+                                        <p key={index} className="text-sm leading-relaxed text-muted-foreground">
+                                            {paragraph}
+                                        </p>
+                                    ))}
+                                </CardContent>
+                            </Card>
+
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Sources</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    {response.sources && response.sources.length > 0 ? (
+                                        <div className="flex flex-wrap gap-2">
+                                            {response.sources.map((source, index) => (
+                                                <Badge
+                                                    key={`${source.source}-${source.chunk_index}-${index}`}
+                                                    variant="outline"
+                                                    className="text-xs"
+                                                >
+                                                    {source.source ?? "Unknown"} · chunk {source.chunk_index ?? "-"}
+                                                </Badge>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p className="text-sm text-muted-foreground">
+                                            No source metadata returned for this answer.
+                                        </p>
+                                    )}
+                                </CardContent>
+                            </Card>
+
+                            {response.cases && response.cases.length > 0 && (
+                                <div className="space-y-3">
+                                    {response.cases.map((caseItem, index) => (
+                                        <Card key={`${caseItem.source}-${caseItem.chunkIndex}-${index}`}>
+                                            <CardHeader>
+                                                <CardTitle>{caseItem.source || `Case ${index + 1}`}</CardTitle>
+                                                <CardDescription>
+                                                    Chunk {caseItem.chunkIndex ?? "-"}
+                                                </CardDescription>
+                                            </CardHeader>
+                                            <CardContent className="space-y-3">
+                                                <div>
+                                                    <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                                                        Summary
+                                                    </p>
+                                                    <p className="text-sm leading-relaxed text-muted-foreground">
+                                                        {caseItem.summary}
+                                                    </p>
+                                                </div>
+                                                <details className="rounded-lg border border-dashed border-border/50 bg-muted/30 p-3">
+                                                    <summary className="cursor-pointer text-sm font-medium text-law-primary">
+                                                        View referenced passage
+                                                    </summary>
+                                                    <p className="mt-2 text-sm text-muted-foreground whitespace-pre-line">
+                                                        {caseItem.content}
+                                                    </p>
+                                                </details>
+                                            </CardContent>
+                                        </Card>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
 
