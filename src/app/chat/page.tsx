@@ -5,6 +5,7 @@ import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatInput } from "@/components/chat/chat-input";
 import { WelcomeMessage } from "@/components/chat/welcome-message";
 import { RelatedQuestions } from "@/components/chat/related-questions";
+import { TextToSpeechReader } from "@/components/chat/text-to-speech-reader";
 import {
   Card,
   CardContent,
@@ -129,11 +130,11 @@ export default function NewChatPage() {
   };
 
   return (
-    <div className="md:ml-64 flex flex-col flex-1 h-full">
+    <div className="flex flex-col flex-1 h-full">
       <ChatHeader />
 
       <div
-        className="flex-1 overflow-y-auto md:px-6 lg:px-8 pb-4 pt-2
+        className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-8 pb-4 pt-2
                 scrollbar-thin scrollbar-thumb-rounded-md
                 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800
                 scrollbar-thumb-gray-300 scrollbar-track-gray-100"
@@ -214,6 +215,9 @@ export default function NewChatPage() {
                   ))}
                 </CardContent>
               </Card>
+
+              {/* Text-to-Speech Reader */}
+              <TextToSpeechReader text={response.answer} />
 
               <Card>
                 <CardHeader>
