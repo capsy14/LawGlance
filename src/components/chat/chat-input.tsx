@@ -1,19 +1,26 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { cn } from "@/lib/utils"
-import { Send, Save } from "lucide-react"
-import { type FC, type KeyboardEvent, useRef } from "react"
-import TextareaAutosize from "react-textarea-autosize"
-import { Button } from "@/components/ui/button"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import type React from "react";
+import { cn } from "@/lib/utils";
+import { Send, Mic, MicOff } from "lucide-react";
+import { type FC, useRef, useEffect, useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useVoiceInput } from "@/hooks/use-voice-input";
 
 interface ChatInputProps {
-  input: string
-  handleInputChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
-  isLoading: boolean
-  onSaveProject?: () => void
+  input: string;
+  handleInputChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  isLoading: boolean;
+  onSaveProject?: () => void;
 }
 
 export const ChatInput: FC<ChatInputProps> = ({
@@ -23,61 +30,104 @@ export const ChatInput: FC<ChatInputProps> = ({
   isLoading,
   onSaveProject
 }) => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [showVoiceError, setShowVoiceError] = useState(false);
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+  const {
+    transcript,
+    isListening,
+    isSupported,
+    error: voiceError,
+    startListening,
+    stopListening,
+    resetTranscript
+  } = useVoiceInput({ continuous: true, interimResults: false });
+
+  // Update input when transcript changes
+  useEffect(() => {
+    if (transcript) {
+      const syntheticEvent = {
+        target: { value: transcript }
+      } as React.ChangeEvent<HTMLTextAreaElement>;
+      handleInputChange(syntheticEvent);
+    }
+  }, [transcript, handleInputChange]);
+
+  // Show voice error alert
+  useEffect(() => {
+    if (voiceError) {
+      setShowVoiceError(true);
+      const timer = setTimeout(() => setShowVoiceError(false), 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [voiceError]);
+
+  const handleVoiceToggle = () => {
+    if (isListening) {
+      stopListening();
+    } else {
+      resetTranscript();
+      startListening();
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault()
-      const form = textareaRef.current?.closest("form")
-      if (form) {
-        const formEvent = new Event("submit", {
-          bubbles: true,
-          cancelable: true,
-        }) as unknown as React.FormEvent<HTMLFormElement>
-        handleSubmit(formEvent)
+      e.preventDefault();
+      if (input.trim() && !isLoading && !isListening) {
+        handleSubmit(e as any);
       }
     }
-  }
+  };
 
   return (
     <div className="relative mx-4 mb-8 sm:mx-0">
-      <form onSubmit={handleSubmit} className="relative flex items-center ">
-        <div className="relative w-full">
+      {showVoiceError && voiceError && (
+        <Alert variant="destructive" className="mb-3">
+          <AlertDescription className="text-xs">{voiceError}</AlertDescription>
+        </Alert>
+      )}
+
+      <form onSubmit={handleSubmit} className="relative">
+        <div className="flex items-end gap-2 rounded-2xl border border-border bg-background shadow-sm hover:shadow-md focus-within:shadow-md focus-within:ring-2 focus-within:ring-primary/20 transition-all">
           <TextareaAutosize
             ref={textareaRef}
-            rows={1}
-            maxRows={5}
-            autoFocus
-            placeholder="Ask a question..."
-            className={cn(
-              "resize-none block w-full rounded-md border border-input bg-background py-3 px-4 pr-14",
-              "text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none",
-              "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50"
-            )}
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            placeholder="Ask your legal question here..."
+            className="flex-1 resize-none bg-transparent px-4 py-3 text-sm focus:outline-none placeholder:text-muted-foreground/60 min-h-[48px] max-h-32"
+            minRows={1}
+            maxRows={6}
             disabled={isLoading}
           />
-          <div className="absolute right-2 top-1/2 -translate-y-1/2 flex space-x-1">
-            {onSaveProject && (
+
+          <div className="flex items-center gap-1 px-2 pb-2.5">
+            {isSupported && (
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
                       type="button"
                       size="icon"
-                      onClick={onSaveProject}
+                      variant={isListening ? "destructive" : "ghost"}
+                      onClick={handleVoiceToggle}
+                      disabled={isLoading}
                       className={cn(
-                        "h-8 w-8 rounded-full",
-                        "bg-green-600 text-white hover:bg-green-700",
+                        "h-9 w-9 rounded-lg",
+                        isListening && "animate-pulse"
                       )}
                     >
-                      <Save className="h-4 w-4" />
-                      <span className="sr-only">Save as project</span>
+                      {isListening ? (
+                        <MicOff className="h-4 w-4" />
+                      ) : (
+                        <Mic className="h-4 w-4" />
+                      )}
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent>Save as project</TooltipContent>
+                  <TooltipContent>
+                    {isListening ? "Stop voice input" : "Start voice input"}
+                  </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
             )}
@@ -88,31 +138,29 @@ export const ChatInput: FC<ChatInputProps> = ({
                   <Button
                     type="submit"
                     size="icon"
-                    disabled={isLoading || input.trim() === ""}
-                    className={cn(
-                      "h-8 w-8 rounded-full",
-                      "bg-law-primary text-white hover:bg-law-primary/90",
-                      "disabled:opacity-50 disabled:pointer-events-none"
-                    )}
+                    disabled={!input.trim() || isLoading || isListening}
+                    className="h-9 w-9 rounded-lg"
                   >
                     <Send className="h-4 w-4" />
-                    <span className="sr-only">Send message</span>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>Send message</TooltipContent>
+                <TooltipContent>Send (Enter)</TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>
         </div>
+
+        {isListening && (
+          <div className="mt-2 flex items-center gap-2 text-xs text-destructive">
+            <div className="h-2 w-2 rounded-full bg-destructive animate-pulse" />
+            <span>Listening... Speak your question</span>
+          </div>
+        )}
+
+        <p className="mt-2 text-xs text-muted-foreground text-center">
+          Press Enter to send • Shift+Enter for new line
+        </p>
       </form>
-      <div className="mt-2 flex justify-between text-xs text-muted-foreground">
-        <span>
-          Press <kbd className="rounded-md border px-1 py-0.5 text-xs font-semibold">Enter</kbd> to send
-        </span>
-        <span>
-          Press <kbd className="rounded-md border px-1 py-0.5 text-xs font-semibold">Shift + Enter</kbd> for new line
-        </span>
-      </div>
     </div>
-  )
-}
+  );
+};

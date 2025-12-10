@@ -8,8 +8,6 @@
   }
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -82,8 +80,6 @@
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border;
@@ -91,4 +87,22 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Legal News Ticker Animation */
+@keyframes scroll-news {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-news {
+  animation: scroll-news 60s linear infinite;
+}
+
+.pause-animation {
+  animation-play-state: paused !important;
 }

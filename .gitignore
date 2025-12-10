@@ -6,6 +6,13 @@
 .pnp.js
 .yarn/install-state.gz
 
+# Python virtual environment
+database/venv/
+venv/
+env/
+*.pyc
+__pycache__/
+
 # testing
 /coverage
 
