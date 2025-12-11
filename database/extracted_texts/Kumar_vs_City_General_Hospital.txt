@@ -1,0 +1,34 @@
+Ramesh Kumar vs City General Hospital & Dr. S. Gupta on 05 November, 2023
+
+Equivalent citations: 2023 CPJ 45 (NC), 2023 (2) CPR 101
+
+PETITIONER: RAMESH KUMAR
+
+Vs.
+
+RESPONDENT: CITY GENERAL HOSPITAL & DR. S. GUPTA
+
+DATE OF JUDGMENT: 05/11/2023
+
+BENCH: V.K. Jain, P. Bhattacharya
+
+ACT: Consumer Protection Act, 2019; Medical Council Act, 1956; Vicarious Liability.
+
+HEADNOTE: Medical Negligence — Wrong-Site Surgery — Vicarious Liability of Hospital Administration — Informed Consent.
+
+The petitioner, a 45-year-old male, was admitted to City General Hospital for a scheduled arthroscopic surgery on his *right* knee. Post-operation, the petitioner discovered that the surgery had been performed on his healthy *left* knee, resulting in permanent mobility impairment.
+
+Respondent No. 1 (The Hospital) argued that Respondent No. 2 (The Surgeon) was an independent visiting consultant, and thus the hospital was not liable for his professional negligence. Respondent No. 2 argued that the nursing staff prepared the wrong leg and the "Time Out" safety protocol was skipped by the anesthesiologist, shifting blame to the hospital staff. The primary legal issue was whether a hospital can absolve itself of liability for visiting consultants and the extent of compensation for loss of livelihood.
+
+JUDGMENT:
+1. The doctrine of *Res Ipsa Loquitur* (the thing speaks for itself) applies. Operating on the wrong limb is a gross deficiency in service that requires no expert testimony to establish negligence.
+2. The Hospital's argument regarding "independent contractors" is rejected. The patient approaches the hospital seeking its reputation and infrastructure, not just the individual doctor. The hospital is vicariously liable for the acts of all staff, including visiting consultants, under the theory of "Ostensible Agency."
+3. Evidence shows a total failure of the "Surgical Safety Checklist." The OT records were manipulated post-surgery to hide the error.
+4. The consent form signed by the patient specified "Right Knee." Any deviation constitutes battery and negligence.
+5. The negligence has resulted in the petitioner losing his job as a field surveyor. Compensation must include future loss of earnings.
+
+ORDER:
+1. Respondents 1 and 2 are held jointly and severally liable.
+2. A total compensation of INR 25,00,000 (Twenty-Five Lakhs) is to be paid to the petitioner within 30 days, failing which interest at 12% p.a. will accrue.
+3. City General Hospital is directed to implement the WHO Surgical Safety Checklist immediately in all operation theaters.
+4. The Medical Council is directed to suspend the license of Dr. S. Gupta for a period of 1 year.

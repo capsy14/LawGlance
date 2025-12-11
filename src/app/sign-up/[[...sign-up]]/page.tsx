@@ -9,7 +9,7 @@ export default function SignUpPage() {
                 <div className="flex justify-center">
                     <Link href="/" className="flex items-center space-x-2">
                         <Scale className="h-8 w-8 text-law-secondary" />
-                        <span className="text-2xl font-bold text-law-primary">LawGPT</span>
+                        <span className="text-2xl font-bold text-law-primary">LawGlance</span>
                     </Link>
                 </div>
             </div>

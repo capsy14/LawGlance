@@ -135,7 +135,7 @@ export function ChatSidebar() {
                                     <Scale className="h-5 w-5 text-white" />
                                 </div>
                                 <div className="ml-2 text-lg font-semibold text-primary">
-                                    LawGPT
+                                    LawGlance
                                 </div>
                             </div>
                         </div>

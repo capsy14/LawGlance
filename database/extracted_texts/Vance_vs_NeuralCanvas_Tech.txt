@@ -1,0 +1,32 @@
+Elena Vance vs NeuralCanvas Technologies Inc. on 22 August, 2025
+
+Equivalent citations: 2025 F.3d 112 (9th Cir.), 2025 USPQ2d 404
+
+PETITIONER: ELENA VANCE
+
+Vs.
+
+RESPONDENT: NEURALCANVAS TECHNOLOGIES INC.
+
+DATE OF JUDGMENT: 22/08/2025
+
+BENCH: A.R. Sterling, M.L. Chen
+
+ACT: Copyright Act; Digital Millennium Copyright Act (DMCA); Fair Use Doctrine.
+
+HEADNOTE: Intellectual Property — Artificial Intelligence — Copyright Infringement — Fair Use vs. Derivative Works.
+
+The petitioner, a digital illustrator, filed a suit against the respondent, an AI research laboratory. The respondent created a generative image model ("CanvasBot 4.0") trained on a dataset of 5 billion images scraped from the internet. The petitioner discovered that her entire portfolio, hosted on ArtStation, was included in the training data without her consent. Users could prompt the model with "in the style of Elena Vance" to generate images indistinguishable from her unique artistic style.
+
+The respondent argued "Fair Use," claiming the training process is transformative. They posited that the AI analyzes mathematical patterns in pixels and does not "copy" the image in a traditional sense. They further argued that the output is new and does not compete directly with the original specific works. The petitioner argued that the model effectively acts as a market substitute, devaluing her commissions and constituting high-tech plagiarism.
+
+JUDGMENT:
+1. The court acknowledges the technological novelty of Generative AI but emphasizes that innovation cannot trample existing property rights.
+2. The "Transformative" defense fails in this specific context. While the AI code is new, the output generated using the petitioner's specific name as a prompt serves the exact same market function as the petitioner's original work. It is a market substitute.
+3. The scraping of copyrighted data, while technically feasible, requires a license when used for commercial model training. The "Black Box" argument—that the company does not know what is in the dataset—is rejected as willful blindness.
+4. The court distinguishes between "learning from style" (which humans do) and "algorithmic compression" of copyrighted works. The latter, when monetized, infringes on the copyright holder's exclusive right to prepare derivative works.
+
+ORDER:
+1. NeuralCanvas Technologies Inc. is permanently enjoined from using the petitioner's name or likeness as a preset style prompt.
+2. The respondent must remove the petitioner's works from their training dataset for future model iterations (retraining).
+3. Statutory damages of $150,000 are awarded for willful infringement.

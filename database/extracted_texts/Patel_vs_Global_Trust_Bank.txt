@@ -1,0 +1,36 @@
+Aarav Patel vs Global Trust Bank Ltd. on 18 June, 2024
+
+Equivalent citations: 2024 (1) CPR 305, 2024 3 SCC 112
+
+PETITIONER: AARAV PATEL
+
+Vs.
+
+RESPONDENT: GLOBAL TRUST BANK LTD.
+
+DATE OF JUDGMENT: 18/06/2024
+
+BENCH: R.D. Dhanuka, M.S. Karnik
+
+ACT: Information Technology Act, 2000; Consumer Protection Act, 2019; RBI Circulars on Electronic Banking.
+
+HEADNOTE: Cyber Law — Unauthorized Electronic Fund Transfer — "Zero Liability" Policy — Burden of Proof in Digital Fraud.
+
+The petitioner, a savings account holder, discovered a debit of INR 12,00,000 from his account on 10th February 2024. The transaction was a wire transfer to an offshore account in the Cayman Islands. The petitioner claimed he received no One-Time Password (OTP) and did not share his credentials. He immediately reported the fraud (within 2 hours) to the bank's toll-free number and lodged a cyber-crime complaint.
+
+The respondent Bank denied liability, citing their "Terms of Service" which state the customer is responsible for password secrecy. They alleged the petitioner must have fallen prey to a "Phishing" email and voluntarily disclosed his credentials, constituting "gross negligence." The bank relied on server logs showing the correct password was used to initiate the transfer. The petitioner contended that the Bank's Two-Factor Authentication (2FA) failed as he never received the SMS code, suggesting a "Sim Swap" or a breach in the bank's SMS gateway.
+
+The central issue was whether the use of a correct password absolves the bank of liability even when the transaction pattern is highly anomalous (foreign IP address, high value, 3:00 AM timing) and whether the burden of proving "customer negligence" lies with the bank.
+
+JUDGMENT:
+1. The Court relies on the RBI Circular regarding "Limiting Liability of Customers in Unauthorized Electronic Banking Transactions." Since the customer reported the unauthorized transaction within 3 working days, the customer's liability is determined to be Zero, unless the Bank can conclusively prove "gross negligence" (e.g., physically handing over the card and PIN).
+2. The Bank's reliance on server logs showing "correct password entry" is insufficient. In an era of sophisticated keyloggers and malware, a correct password does not imply the customer voluntarily shared it.
+3. The Bank failed to explain why their Fraud Risk Management (FRM) system did not flag the transaction. The transfer was initiated from an IP address in Eastern Europe, while the customer's consistent login history was from Mumbai. This failure to detect a "Red Flag" indicates a deficiency in the Bank's security systems.
+4. The argument regarding the "Sim Swap" was investigated. Telecom records showed no Sim Swap occurred. This lends credence to the Petitioner's claim that the Bank's OTP delivery system was bypassed or compromised.
+5. Banks are custodians of public money. They cannot hide behind standard contract clauses when their digital infrastructure fails to protect against sophisticated cyber-attacks.
+
+ORDER:
+1. Global Trust Bank Ltd. is directed to reverse the debit of INR 12,00,000 immediately and credit the amount to the petitioner's account with 9% interest from the date of the fraud.
+2. The Bank is directed to pay INR 1,00,000 as compensation for mental agony and harassment.
+3. The Bank must conduct a forensic audit of its SMS Gateway integration and submit a report to the RBI within 60 days.
+4. No order as to costs.

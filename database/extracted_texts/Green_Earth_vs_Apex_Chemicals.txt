@@ -1,0 +1,33 @@
+Green Earth Foundation & Ors vs Apex Chemical Industries Ltd on 14 March, 2024
+
+Equivalent citations: 2024 AIR 4055, 2024 2 SCR 880, (2024) 5 SCC 210
+
+PETITIONER: GREEN EARTH FOUNDATION & ORS.
+
+Vs.
+
+RESPONDENT: APEX CHEMICAL INDUSTRIES LTD.
+
+DATE OF JUDGMENT: 14/03/2024
+
+BENCH: J.P. Malhotra, S.K. Kaul
+
+ACT: Environment Protection Act, 1986; Water (Prevention and Control of Pollution) Act, 1974; Public Liability Insurance Act, 1991.
+
+HEADNOTE: Environmental Law — Industrial Pollution — The "Polluter Pays" Principle — Negligence in Waste Treatment.
+
+The respondents operate a heavy chemical manufacturing unit adjacent to the Kali River. Between January 2022 and March 2023, local farmers reported a sharp decline in crop yield and skin ailments among livestock drinking river water. Inspection by the State Pollution Control Board (SPCB) revealed bypass pipelines utilized by the respondent to discharge untreated mercury-laden effluent directly into the river during night shifts to avoid detection.
+
+The respondents argued that their Effluent Treatment Plant (ETP) was fully functional and that any discharge was the result of a "force majeure" event involving pipe bursts due to unexpected seismic activity. The petitioners contended that the seismic data was fabricated and that the company had a history of bypassing safety protocols to cut costs. The primary issue was whether the strict liability standard applies to hazardous industries even if intent to harm is not explicitly proven.
+
+JUDGMENT:
+1. The Court finds the report submitted by the SPCB to be conclusive. The chemical analysis of the river water downstream from the respondent's plant showed mercury levels 400 times above the permissible limit.
+2. The argument of "force majeure" is dismissed. Geological survey reports confirm no seismic activity in the region during the relevant period. The "pipe burst" theory is inconsistent with the discovery of deliberately installed bypass valves.
+3. Under the Environment Protection Act, industries handling hazardous substances are subject to "Absolute Liability." They are liable for the harm caused by the escape of toxic substances, regardless of whether they took reasonable care.
+4. The economic benefits of industrialization cannot outweigh the fundamental right to a clean environment under Article 21 of the Constitution.
+5. The Court observes that the corporate veil may be lifted to penalize directors personally responsible for mandating the bypass of the ETP.
+
+ORDER:
+1. Apex Chemical Industries Ltd. is directed to shut down operations immediately until the ETP is certified by a central committee.
+2. A compensation fund of INR 50 Crores is to be deposited with the District Magistrate within 4 weeks for the rehabilitation of affected farmers.
+3. The SPCB is directed to initiate criminal proceedings against the Managing Director under Section 15 of the Environment Protection Act.

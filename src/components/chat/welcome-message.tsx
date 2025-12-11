@@ -38,7 +38,7 @@ export function WelcomeMessage({ onNewProject, handleInputChange }: WelcomeMessa
             </div>
 
             <CardTitle className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-law-primary to-law-secondary bg-clip-text text-transparent dark:text-transparent">
-              Welcome to LawGPT India
+              Welcome to LawGlance India
             </CardTitle>
             <CardDescription className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
               Your AI-powered legal research and information companion for Indian laws

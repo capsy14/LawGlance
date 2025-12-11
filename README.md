@@ -1,7 +1,7 @@
-# LawGPT - AI-Powered Legal Assistant
+# LawGlance - AI-Powered Legal Assistant
 
 
-LawGPT is an AI-driven legal assistant designed to provide instant legal guidance, simplify complex legal concepts, and help users navigate legal matters efficiently. It leverages Retrieval-Augmented Generation (RAG) to enhance responses with document-based legal knowledge.
+LawGlance is an AI-driven legal assistant designed to provide instant legal guidance, simplify complex legal concepts, and help users navigate legal matters efficiently. It leverages Retrieval-Augmented Generation (RAG) to enhance responses with document-based legal knowledge.
 
 ## Features
 - **AI-Powered Legal Guidance**: Get instant answers to legal queries.
@@ -22,9 +22,9 @@ LawGPT is an AI-driven legal assistant designed to provide instant legal guidanc
 ## Setup
 
 ```bash
-git clone https://github.com/ayuugoyal/lawgpt
+git clone https://github.com/ayuugoyal/lawglance
 
-cd lawgpt
+cd lawglance
 
 pnpm install
 
